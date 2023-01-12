@@ -1,6 +1,6 @@
 {
   "name": "@openchair-io/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OpenChair CLI",
   "main": "dist/index.js",
   "repository": "https://github.com/openchair-io/cli",

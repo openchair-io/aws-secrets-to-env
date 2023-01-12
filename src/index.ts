@@ -72,7 +72,6 @@ export function writeEnv(keyValuePairs: any, filePath: string) {
       console.log(info(`info: ${key}`));
       const v = `export ${key.toUpperCase()}=${value}${`\n`}`;
       const exportString = v;
-      console.log(info(exportString));
 
       writeStream.write(exportString);
     });
