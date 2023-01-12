@@ -2,7 +2,7 @@
   "name": "@openchair-io/cli",
   "version": "0.0.1",
   "description": "OpenChair CLI",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "repository": "https://github.com/openchair-io/cli",
   "author": "OpenChair Engineering<engineering@openchair.io>",
   "license": "MIT",
