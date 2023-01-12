@@ -1,0 +1,29 @@
+{
+  "name": "@openchair-io/aws-secrets-to-env",
+  "version": "0.0.1",
+  "description": "Simple CLI that grabs secrets from AWS Secrets Manager and exports them to a .env format file on your local machine.",
+  "main": "src/index.ts",
+  "repository": "https://github.com/openchair-io/aws-secrets-to-env",
+  "author": "OpenChair Engineering<engineering@openchair.io>",
+  "license": "MIT",
+  "private": false,
+  "bin": {
+    "oc": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.245.0",
+    "cli-color": "^2.0.3",
+    "commander": "^9.5.0",
+    "figlet": "^1.5.2"
+  },
+  "devDependencies": {
+    "@types/cli-color": "^2.0.2",
+    "@types/figlet": "^1.5.5",
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  }
+}
