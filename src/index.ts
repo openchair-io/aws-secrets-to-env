@@ -28,6 +28,7 @@ program
   .command("secrets")
   .argument("<secrets manager id>")
   .option("-p, --path <value>", "Path to output local secrets file to", ".env")
+  .option("-pr, --prefix <value>", "The key prefix in the exported file", "")
   .option(
     "--region, --region <value>",
     "AWS Region defaults to `us-east-1`",
@@ -56,21 +57,21 @@ export async function execute(secretId: string, options: any) {
       console.log(info(`info: fetched secret${"\n"}`));
       const parsed = JSON.parse(response.SecretString);
 
-      return writeEnv(parsed, options.path);
+      return writeEnv(parsed, options.path, options.prefix);
     }
   } catch (err) {
     program.error(error(err));
   }
 }
 
-export function writeEnv(keyValuePairs: any, filePath: string) {
+export function writeEnv(keyValuePairs: any, filePath: string, prefix: string) {
   try {
     const envFile = path.resolve(filePath);
     const writeStream = fs.createWriteStream(envFile);
 
     Object.entries(keyValuePairs).map(([key, value]) => {
       console.log(info(`info: ${key}`));
-      const v = `export ${key.toUpperCase()}=${value}${`\n`}`;
+      const v = `${prefix}${key.toUpperCase()}=${value}${`\n`}`;
       const exportString = v;
 
       writeStream.write(exportString);
