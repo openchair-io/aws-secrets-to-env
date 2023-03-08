@@ -16,7 +16,7 @@ const info = clc.greenBright.bold;
 
 console.log(`${figlet.textSync("openchair . io")}${"\n"}`);
 
-program.name("oc").version("0.0.1").description("OpenChair CLI");
+program.name("oc").version("0.0.1").description("OpenChair Secrets Manager");
 
 program
   .configureOutput({
@@ -26,21 +26,17 @@ program
 
 program
   .command("secrets")
-  .argument("<secrets manager id>")
-  .option("-p, --path <value>", "Path to output local secrets file to", ".env")
-  .option("-pr, --prefix <value>", "The key prefix in the exported file", "")
+  .argument("<aws secrets manager secret name>")
+  .option("--path <value>", "Path to output local secrets file to", ".env")
+  .option(
+    "--prepend <value>",
+    "Prepend text to each line in the exported file i.e. `export VARIABLE_NAME=`. The default format is `VARIABLE_NAME=`",
+    ""
+  )
   .option(
     "--region, --region <value>",
     "AWS Region defaults to `us-east-1`",
     "us-east-1"
-  )
-  .option(
-    "--access-key-id, --access-key-id <value>",
-    "AWS client id by default looks for AWS_ACCESS_KEY_ID set in the envirnment"
-  )
-  .option(
-    "--secret-access-key, --secret-access-key <value>",
-    "AWS secret access key by default looks for AWS_SECRET_ACCESS_KEY set in the envirnment"
   )
   .action(execute);
 
@@ -57,21 +53,25 @@ export async function execute(secretId: string, options: any) {
       console.log(info(`info: fetched secret${"\n"}`));
       const parsed = JSON.parse(response.SecretString);
 
-      return writeEnv(parsed, options.path, options.prefix);
+      return writeEnv(parsed, options.path, options.prepend);
     }
   } catch (err) {
     program.error(error(err));
   }
 }
 
-export function writeEnv(keyValuePairs: any, filePath: string, prefix: string) {
+export function writeEnv(
+  keyValuePairs: any,
+  filePath: string,
+  prepend: string
+) {
   try {
     const envFile = path.resolve(filePath);
     const writeStream = fs.createWriteStream(envFile);
 
     Object.entries(keyValuePairs).map(([key, value]) => {
       console.log(info(`info: ${key}`));
-      const v = `${prefix}${key.toUpperCase()}=${value}${`\n`}`;
+      const v = `${prepend}${key.toUpperCase()}=${value}${`\n`}`;
       const exportString = v;
 
       writeStream.write(exportString);

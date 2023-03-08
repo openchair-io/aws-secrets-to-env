@@ -1,9 +1,9 @@
 {
-  "name": "@openchair-io/cli",
+  "name": "@openchair-io/secrets-manager",
   "version": "0.0.4",
-  "description": "OpenChair CLI",
+  "description": "OpenChair Secrets Manager",
   "main": "dist/index.js",
-  "repository": "https://github.com/openchair-io/cli",
+  "repository": "https://github.com/openchair-io/secrets-manager",
   "author": "OpenChair Engineering<engineering@openchair.io>",
   "license": "MIT",
   "private": false,
