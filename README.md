@@ -52,7 +52,7 @@ SECRET_1=xxxx
 SECRET_2=xxxx
 ```
 <br>
-Fetch secrets and output to a different path i.e. `./.env.development`.
+Fetch secrets and output to a different path i.e. `~/desktop/.env.development`.
 
 ```
 export AWS_ACCESS_KEY_ID=xxxx
@@ -61,7 +61,7 @@ export AWS_SECRET_ACCESS_KEY=xxx
 oc secrets <aws secrets manager secret name> --path .env.development
 
 ```
-This will create an env file at `./.env.development` file that looks like:
+This will create an env file at `~/desktop/.env.development` file that looks like:
 
 ```
 SECRET_1=xxxx
