@@ -20,6 +20,7 @@ See available options and what they do.
 oc secrets --help
 ```
 <br>
+
 Fetch secrets and output to `./.env`.
 
 ```
@@ -36,6 +37,7 @@ SECRET_1=xxxx
 SECRET_2=xxxx
 ```
 <br>
+
 Fetch secrets and output to a different path i.e. `./.env.development`.
 
 ```
@@ -52,7 +54,8 @@ SECRET_1=xxxx
 SECRET_2=xxxx
 ```
 <br>
-Fetch secrets and output to a different path i.e. `~/desktop/.env.development`.
+
+Fetch secrets and output to a different path i.e. `~/desktop/.env.development` .
 
 ```
 export AWS_ACCESS_KEY_ID=xxxx
@@ -68,6 +71,7 @@ SECRET_1=xxxx
 SECRET_2=xxxx
 ```
 <br>
+
 Fetch secrets and prepend `export`.
 
 ```
